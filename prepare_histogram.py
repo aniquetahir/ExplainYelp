@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 cnx = mysql.connector.connect(user='root', password='root', database='yelp')
 cursor = cnx.cursor()
 # Top rated cities in AZ
-avg_city_ratings_query = "select city, avg(stars) as rating from businesses where state='AZ' group by city;"
+avg_city_ratings_query = "select city, count(*) as rating from businesses where state='AZ' group by city;"
 
 cursor.execute(avg_city_ratings_query)
 
@@ -38,7 +38,7 @@ ax.bar(bins, data, width=0.5, label='Avg Rating')
 ax.set_xticks(bins)
 ax.set_xticklabels(labels, rotation=45, rotation_mode="anchor", ha="right")
 
-ax.legend(loc='upper right')
+ax.legend(loc='upper left')
 plt.tight_layout()
 plt.show()
 
